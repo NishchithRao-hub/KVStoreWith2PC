@@ -1,6 +1,6 @@
 # READ ME
 
-##Goal:
+## Goal:
 
 Replicating a Key-Value Store Server across 5 distinct servers, using a single instance of a Key-Value Store server. 
 To increase Server bandwidth and ensure availability, we are replicating the key-value store at each of 5 different 
