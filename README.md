@@ -1,5 +1,20 @@
 # READ ME
 
+##Goal:
+
+Replicating a Key-Value Store Server across 5 distinct servers, using a single instance of a Key-Value Store server. 
+To increase Server bandwidth and ensure availability, we are replicating the key-value store at each of 5 different 
+instances of our servers. The clients will be able to contact any of the five KV replica servers instead of a 
+single server and get consistent data back from any of the replicas (in the case of GETs). The client will also be
+able to issue PUT operations and DELETE operations to any of the five replicas.
+
+On PUT or DELETE operations we ensure each of the replicated KV stores at each replica is
+consistent. For this, we are implementing a two-phase protocol for updates. We will assume no
+servers will fail such that 2 Phase Commit will not stall, although we will defensively code
+our 2PC protocol with timeouts to be sure. Consequently, whenever a client issues a PUT or a
+DELETE to *any* server replica, that receiving replica will ensure the updates have been received (via
+ACKs) and commited (via Go messages with accompanying ACKs).
+
 #### Project structure
 
 Before packaging out application, given below is the project structure which has `client` and `server` packages.
